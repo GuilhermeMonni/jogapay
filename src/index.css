@@ -1,3 +1,17 @@
-body{
-    background-color: #fff;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+@import "tailwindcss";
+
+@theme {
+    /* colors */
+    --color-primary: #10B981;
+    --color-secundary: #059669;
+    --color-gray: #6B7280;
+    --color-violet: #8B5CF6;
+
+    /* fonts */
+    --font-rubik: "Rubik", sans-serif;
+    --font-noto: "Noto Sans", sans-serif;
+    --font-momo: "Momo Trust Display", sans-serif;
 }
