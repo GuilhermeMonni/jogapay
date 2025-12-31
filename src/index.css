@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -9,9 +10,11 @@
     --color-secundary: #059669;
     --color-gray: #6B7280;
     --color-violet: #8B5CF6;
+    --color-subtitle: #064e3b;
 
     /* fonts */
-    --font-rubik: "Rubik", sans-serif;
-    --font-noto: "Noto Sans", sans-serif;
-    --font-momo: "Momo Trust Display", sans-serif;
+    --font-roboto: "Roboto", sans-serif;
+    --font-inter: "Inter", sans-serif;
+    --font-cherry: "Cherry Bomb One", system-ui;
+    --font-varela: "Varela Round", sans-serif;
 }
