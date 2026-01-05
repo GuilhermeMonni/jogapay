@@ -6,7 +6,8 @@
 
 ###
 
-O **JogaPay** é uma aplicação web moderna que substitui completamente a maquininha de cartão física do jogo Super Banco Imobiliário. Com uma interface intuitiva e responsiva, você pode gerenciar todas as transações do jogo de forma digital, tornando a experiência mais prática e dinâmica.
+Precisa de uma solução sem barulho e com a operação mais rápida que a maquininha do Super Banco Imobiliário. Daí surgiu a ideia do *JogaPay*: uma solução web que substitui aquele hardware chatinho por algo moderno, rápido e que funciona no celular de qualquer um.
+A proposta é simples: gerenciar pagamentos, recebimentos e transações do jogo de forma digital, sem depender de pilhas, baterias ou conexões Bluetooth temperamentais. É só abrir o app jogar.
 
 # ✨ Funcionalidades
 
