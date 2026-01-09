@@ -11,10 +11,12 @@
     --color-gray: #6B7280;
     --color-violet: #8B5CF6;
     --color-subtitle: #034220;
+    --color-main: #0972518a;
+    --color-card: #ffffffb4;
 
     /* fonts */
     --font-roboto: "Roboto", sans-serif;
     --font-inter: "Inter", sans-serif;
-    --font-cherry: "Cherry Bomb One", system-ui;
+     --font-cherry: "Cherry Bomb One", system-ui; /* title */
     --font-varela: "Varela Round", sans-serif;
 }
