@@ -1,12 +1,22 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import ReactModal from "react-modal"
+import { InputNumber, Space } from "antd"
 
 function Players() {
-    let [addPlayer, setAddPlayer] = useState(false)
+    const [addPlayer, setAddPlayer] = useState(false)
+    const [value, setValue] = useState()
+    
+    const formatter = (value) => {
+        //format value 
+        const [start, end] = `${value}`.split('.') || [] //string
+        const v = `${start}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.') //decimal
+        
+        return `R$ ${end ? `${v}.${end}` : `${v}`}`
+    }
 
     return(
-        <div className="grid grid-cols-3 gap-10 m-0 p-8 justify-items-center bg-main min-h-screen">
-            <ReactModal
+        <>
+        <ReactModal
             // modal popup
                 isOpen={addPlayer}
                 onRequestClose={() => setAddPlayer(false)}
@@ -18,13 +28,14 @@ function Players() {
                         justifyContent: "center",
                     },
                     content: {
-                        top: 50,
                         border: "none",
                         background: "transparent",
+                        inset: "unset"
                     },
                 }}
+                ariaHideApp={false}
             >
-            <div className="bg-gray-200 border-detail font-inter max-w-4/12 mx-auto rounded-xl shadow-xl border p-6 text-detail flex flex-col">
+            <div className="bg-gray-200 border-detail font-inter min-w-4/12 mx-auto rounded-xl shadow-xl border p-8 text-detail flex flex-col">
                 <h3 className="text-xl font-bold mb-3 font-varela text-secundary text-center">
                     Adicionar jogador
                 </h3>
@@ -55,9 +66,54 @@ function Players() {
                         className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                 </div>
-                <p className="text-sm leading-relaxed mb-5 text-justify indent-2 text-alternate">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus nam, voluptate sunt id iste dignissimos veritatis molestiae ea quod illo esse laborum repellendus impedit accusantium cumque voluptatibus enim ex iure?Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                </p>
+                <form className="space-y-6 mb-5 m-5">
+                    {/* nickname */}
+                    <div className="relative">
+                        <input
+                            type="text"
+                            id="namePlayer"
+                            className="peer w-full px-4 py-3 bg-transparent border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none transition-colors"
+                            placeholder=" "
+                        />
+                        <label
+                            htmlFor="namePlayer"
+                            className="absolute left-4 top-3 text-gray transition-all duration-300 pointer-events-none
+                                    peer-focus:-top-5 peer-focus:left-3 peer-focus:text-sm peer-focus:text-primary peer-focus:px-2
+                                    peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:px-2"
+                        >
+                            Nome do Jogador
+                        </label>
+                    </div>
+
+                    {/* initial income */}
+                    <div className="relative">
+                        <Space>
+                            <InputNumber
+                            controls={false}
+                            value={value}
+                            onBlur={(e) => {
+                                const finalValue = e.target.value
+                                setValue(finalValue)
+
+                                console.log('Valor final: ', finalValue)
+                            }}
+                            formatter={formatter}
+                            parser={value => value?.replace(/\$\s?|(,*)/g, '')}
+                            id="income"
+                            className="!peer !w-full !px-4 !py-3 !bg-transparent !border-2 !border-gray-300 !rounded-lg focus:!border-primary focus:!outline-none !transition-colors"
+                            placeholder=" "
+                        />
+                        </Space>
+                        {/* <label
+                            htmlFor="income"
+                            className="absolute left-4 top-3 text-gray-500 transition-all duration-300 pointer-events-none
+                                    peer-focus:-top-5 peer-focus:left-3 peer-focus:text-sm peer-focus:text-primary peer-focus:px-2
+                                    peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:px-2"
+                        >
+                            Renda Inicial (R$)
+                        </label>  */}
+                    </div>
+                </form>
                 <button
                     onClick={() => setAddPlayer(false)}
                     className="align-center px-5 py-2 rounded-md font-semibold text-white hover:opacity-90 transition"
@@ -69,14 +125,16 @@ function Players() {
                     Entendi
                 </button>
             </div>
-            </ReactModal>
+        </ReactModal>
 
+        <div className="grid grid-cols-3 gap-10 m-0 p-8 justify-items-center bg-main min-h-screen">
             <div className="bg-card mx-0 min-w-60 min-h-56 max-h-56 flex flex-col items-center justify-center max-w-xs  rounded-xl shadow-md"> 
             {/* card player */}
                 <button onClick={() => setAddPlayer(true)} className="cursor-pointer w-1/8 hover:scale-105"><img src="https://res.cloudinary.com/dzbdewkbp/image/upload/v1767051353/mais_1_cyyiqq.png" alt="Imagem adicionar" /></button>
 
             </div>
         </div>
+        </>
     )
 }
 
