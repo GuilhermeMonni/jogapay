@@ -1,17 +1,21 @@
 import { useState } from "react"
 import ReactModal from "react-modal"
-import { InputNumber, Space } from "antd"
+import { Input, InputNumber, Space } from "antd"
 
 function Players() {
     const [addPlayer, setAddPlayer] = useState(false)
     const [value, setValue] = useState()
     
+    const [isFocused, setIsFocused] = useState(false) //focus input
+    
     const formatter = (value) => {
         //format value 
+        if(!value) return ''
+
         const [start, end] = `${value}`.split('.') || [] //string
         const v = `${start}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.') //decimal
         
-        return `R$ ${end ? `${v}.${end}` : `${v}`}`
+        return `${end ? `${v}.${end}` : `${v}`}`
     }
 
     return(
@@ -42,76 +46,76 @@ function Players() {
                 <p className="font-roboto my-2 mx-auto">Escolha uma cor para o card do jogador</p>
                 <div className="grid grid-cols-4 gap-x-8 gap-y-3 mb-3 mx-auto">
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_blue rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_pink rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_yellow rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_lilac rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_green rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_peach rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_magenta rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                     <button 
-                        className="w-12 h-12 bg-red-500 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                        className="w-12 h-12 bg-card_cyan rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
                     />
                 </div>
                 <form className="space-y-6 mb-5 m-5">
                     {/* nickname */}
                     <div className="relative">
-                        <input
+                        <Input
                             type="text"
                             id="namePlayer"
-                            className="peer w-full px-4 py-3 bg-transparent border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none transition-colors"
-                            placeholder=" "
+                            className="!w-full !h-12 !px-4 !py-3 !border-2 !border-gray-300 !rounded-lg focus:!border-primary"
+                            placeholder="Nome do Jogador"
                         />
-                        <label
-                            htmlFor="namePlayer"
-                            className="absolute left-4 top-3 text-gray transition-all duration-300 pointer-events-none
-                                    peer-focus:-top-5 peer-focus:left-3 peer-focus:text-sm peer-focus:text-primary peer-focus:px-2
-                                    peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:px-2"
-                        >
-                            Nome do Jogador
-                        </label>
                     </div>
 
                     {/* initial income */}
                     <div className="relative">
                         <Space>
+                            <p className="font-roboto text-sm">R$</p>
                             <InputNumber
+                            style={{
+                                width: '100%',
+                                height: '3rem',
+                                paddingLeft: '1rem',
+                                paddingRight: '1rem',
+                                paddingTop: '0.75rem',
+                                paddingBottom: '0.75rem',
+                                borderWidth: '2px',
+                                borderStyle: 'solid',
+                                borderColor: isFocused ? 'var(--color-primary)' : '#d1d5db',
+                                borderRadius: '0.5rem',
+                                outline: 'none',
+                                transition: 'border-color 0.3s ease'
+                            }}
+                            onFocus={() => setIsFocused(true)}
                             controls={false}
                             value={value}
                             onBlur={(e) => {
                                 const finalValue = e.target.value
                                 setValue(finalValue)
+                                setIsFocused(false)
 
                                 console.log('Valor final: ', finalValue)
                             }}
                             formatter={formatter}
                             parser={value => value?.replace(/\$\s?|(,*)/g, '')}
                             id="income"
-                            className="!peer !w-full !px-4 !py-3 !bg-transparent !border-2 !border-gray-300 !rounded-lg focus:!border-primary focus:!outline-none !transition-colors"
-                            placeholder=" "
+                            placeholder="Renda Inicial"
                         />
                         </Space>
-                        {/* <label
-                            htmlFor="income"
-                            className="absolute left-4 top-3 text-gray-500 transition-all duration-300 pointer-events-none
-                                    peer-focus:-top-5 peer-focus:left-3 peer-focus:text-sm peer-focus:text-primary peer-focus:px-2
-                                    peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:px-2"
-                        >
-                            Renda Inicial (R$)
-                        </label>  */}
                     </div>
                 </form>
                 <button
@@ -122,7 +126,7 @@ function Players() {
                         fontFamily: "var(--font-rubik)",
                     }}
                     >
-                    Entendi
+                    Concluido
                 </button>
             </div>
         </ReactModal>
@@ -131,7 +135,6 @@ function Players() {
             <div className="bg-card mx-0 min-w-60 min-h-56 max-h-56 flex flex-col items-center justify-center max-w-xs  rounded-xl shadow-md"> 
             {/* card player */}
                 <button onClick={() => setAddPlayer(true)} className="cursor-pointer w-1/8 hover:scale-105"><img src="https://res.cloudinary.com/dzbdewkbp/image/upload/v1767051353/mais_1_cyyiqq.png" alt="Imagem adicionar" /></button>
-
             </div>
         </div>
         </>

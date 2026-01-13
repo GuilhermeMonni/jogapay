@@ -13,6 +13,14 @@
     --color-subtitle: #034220;
     --color-main: #0972518a;
     --color-card: #ffffffb4;
+    --color-card_blue: #93C5FD;
+    --color-card_pink: #FCA5A5;
+    --color-card_yellow: #FDE047;
+    --color-card_lilac: #C4B5FD;
+    --color-card_green: #86EFAC;
+    --color-card_peach: #FDBA74;
+    --color-card_magenta: #F0ABFC;
+    --color-card_cyan: #A5F3FC;
 
     /* fonts */
     --font-roboto: "Roboto", sans-serif;
