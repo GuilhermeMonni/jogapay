@@ -20,7 +20,28 @@ function Players() {
     }
 
     //save in local storage
+    const playerInfo = (card, name, value) => {
+        console.log(card, value, name)
+        
+        setAddPlayer(false)
+        setValue()
+        setCard('')
+    }
 
+    const keyDown = () => { //click enter
+        const form = document.querySelector('#form')//form player
+            if(form){
+
+                form.addEventListener('keydown', (e) => {
+                    if(e.key === 'Enter'){
+                        e.preventDefault()
+                        const name = document.querySelector('#name')
+
+                        playerInfo(name, value, card)
+                    }
+                })
+            }
+    }   
 
     return(
         <>
@@ -49,37 +70,69 @@ function Players() {
                 </h3>
                 <p className="font-roboto my-2 mx-auto">Escolha uma cor para o card do jogador</p>
                 <div className="grid grid-cols-4 gap-x-8 gap-y-3 mb-3 mx-auto">
-                    <button 
-                        className="w-12 h-12 bg-card_blue rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('blue')
+                    }}
+                        className="w-12 h-12 bg-card_blue rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
-                    <button 
-                        className="w-12 h-12 bg-card_pink rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('pink')
+                    }} 
+                        className="w-12 h-12 bg-card_pink rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
-                    <button 
-                        className="w-12 h-12 bg-card_yellow rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('yellow')
+                    }} 
+                        className="w-12 h-12 bg-card_yellow rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
-                    <button 
-                        className="w-12 h-12 bg-card_lilac rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('lilac')
+                    }} 
+                        className="w-12 h-12 bg-card_lilac rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
-                    <button 
-                        className="w-12 h-12 bg-card_green rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('green')
+                    }} 
+                        className="w-12 h-12 bg-card_green rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
-                    <button 
-                        className="w-12 h-12 bg-card_peach rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('peach')
+                    }} 
+                        className="w-12 h-12 bg-card_peach rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
-                    <button 
-                        className="w-12 h-12 bg-card_magenta rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('magenta')
+                    }} 
+                        className="w-12 h-12 bg-card_magenta rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
-                    <button 
-                        className="w-12 h-12 bg-card_cyan rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800"
+                    <button onClick={(e) => {
+                        e.preventDefault
+                        setCard('cyan')
+                    }} 
+                        className="w-12 h-12 bg-card_cyan rounded-lg cursor-pointer hover:scale-110 transition-transform border-2 border-transparent hover:border-gray-800
+                        focus:border-gray-800 focus:scale-110"
                     />
                 </div>
-                <form className="space-y-6 mb-5 m-5">
+                <form onKeyDown={keyDown} id="form" className="space-y-6 mb-5 m-5">
                     {/* nickname */}
                     <div className="relative flex w-full">
                         <Input
                             type="text"
-                            id="namePlayer"
+                            id="name"
                             className="!mx-auto !min-w-52 !max-w-52 !h-12 !px-4 !py-3 !border-2 !border-gray-300 !rounded-lg focus:!border-primary"
                             placeholder="Nome do Jogador"
                         />
@@ -127,7 +180,12 @@ function Players() {
                     <div className="mx-auto flex">
                         <button
                         type="submit"
-                        onClick={() => setAddPlayer(false)}
+                        onClick={ (e) => {
+                            e.preventDefault()
+                            const name = document.querySelector('#name').value
+
+                            playerInfo(name, value, card)
+                        }}
                         className="w-2/4 mx-auto bg-primary px-5 py-2 rounded-md font-semibold text-white hover:opacity-90 transition">
                             Concluido
                         </button>
