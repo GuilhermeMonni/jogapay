@@ -3,13 +3,14 @@ import ReactModal from "react-modal"
 import { Input, InputNumber, Space } from "antd"
 
 function Players() {
+    //name and income player    
     const [addPlayer, setAddPlayer] = useState(false)
     const [value, setValue] = useState()
-    
+    //color card player
+    const [card, setCard] = useState()
     const [isFocused, setIsFocused] = useState(false) //focus input
     
-    const formatter = (value) => {
-        //format value 
+    const formatter = (value) => {//format value 
         if(!value) return ''
 
         const [start, end] = `${value}`.split('.') || [] //string
@@ -17,6 +18,9 @@ function Players() {
         
         return `${end ? `${v}.${end}` : `${v}`}`
     }
+
+    //save in local storage
+
 
     return(
         <>
@@ -72,23 +76,25 @@ function Players() {
                 </div>
                 <form className="space-y-6 mb-5 m-5">
                     {/* nickname */}
-                    <div className="relative">
+                    <div className="relative flex w-full">
                         <Input
                             type="text"
                             id="namePlayer"
-                            className="!w-full !h-12 !px-4 !py-3 !border-2 !border-gray-300 !rounded-lg focus:!border-primary"
+                            className="!mx-auto !min-w-52 !max-w-52 !h-12 !px-4 !py-3 !border-2 !border-gray-300 !rounded-lg focus:!border-primary"
                             placeholder="Nome do Jogador"
                         />
                     </div>
 
                     {/* initial income */}
-                    <div className="relative">
+                    <div className="relative flex">
                         <Space>
                             <p className="font-roboto text-sm">R$</p>
                             <InputNumber
                             style={{
-                                width: '100%',
+                                minWidth: '13rem',
                                 height: '3rem',
+                                margin: 'auto',
+                                marginLeft: '-.3rem',
                                 paddingLeft: '1rem',
                                 paddingRight: '1rem',
                                 paddingTop: '0.75rem',
@@ -117,17 +123,16 @@ function Players() {
                         />
                         </Space>
                     </div>
+
+                    <div className="mx-auto flex">
+                        <button
+                        type="submit"
+                        onClick={() => setAddPlayer(false)}
+                        className="w-2/4 mx-auto bg-primary px-5 py-2 rounded-md font-semibold text-white hover:opacity-90 transition">
+                            Concluido
+                        </button>
+                    </div>
                 </form>
-                <button
-                    onClick={() => setAddPlayer(false)}
-                    className="align-center px-5 py-2 rounded-md font-semibold text-white hover:opacity-90 transition"
-                    style={{
-                        backgroundColor: "var(--color-secundary)",
-                        fontFamily: "var(--font-rubik)",
-                    }}
-                    >
-                    Concluido
-                </button>
             </div>
         </ReactModal>
 
